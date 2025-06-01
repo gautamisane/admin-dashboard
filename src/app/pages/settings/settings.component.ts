@@ -46,18 +46,15 @@ export class SettingsComponent implements OnInit {
         state: ['']
       })
     });
-
     this.calculateRoleCounts();
 
   }
 
   calculateRoleCounts() {
     const counts: any = { Admin: 0, Viewer: 0 };
-
     data.forEach(user => {
       counts[user.Role] = (counts[user.Role] || 0) + 1;
     });
-
     this.roleCounts = counts;
     this.barChartData = {
       labels: ['Admin', 'Viewer'],
@@ -68,13 +65,15 @@ export class SettingsComponent implements OnInit {
         }
       ]
     };
-
   }
+
+
 
   onSubmit(): void {
     if (this.settingsForm.valid) {
       console.log('Form Submitted:', this.data, this.settingsForm.value);
       let formData = this.settingsForm.value;
+      let skills = formData.skill ? formData.skill.split(", ") : formData.skill
       const mappedUser = {
         ID: data.length + 1,
         Name: formData.name,
@@ -83,7 +82,7 @@ export class SettingsComponent implements OnInit {
         Address: formData.address.state
           ? `${formData.address.city}, ${formData.address.state}`
           : `${formData.address.city}`,
-        Skills: []
+        Skills: skills
       };
       this.data.push(mappedUser);
       this.calculateRoleCounts();
@@ -98,17 +97,21 @@ export class SettingsComponent implements OnInit {
           verticalPosition: 'bottom',
         });
       });
-     
+
     } else {
       this.settingsForm.markAllAsTouched();
     }
   }
 
+  showBtn = true;
+  showSkillsField = false;
+  addSkills() {
+    if (!this.showSkillsField) {
+      this.settingsForm.addControl('skill', this.fb.control(''));
+      this.showSkillsField = true;
+      this.showBtn = false;
+    }
+
+  }
+
 }
-
-
-
-
-
-
-
