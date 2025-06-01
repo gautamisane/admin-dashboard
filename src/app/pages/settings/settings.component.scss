@@ -1,0 +1,43 @@
+.settings-form {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.sub {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.row>mat-form-field {
+    flex: 1;
+    min-width: 200px;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.home-icon {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}

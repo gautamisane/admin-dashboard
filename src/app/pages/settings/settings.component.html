@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+    <span class="title">Dashboard</span>
+    <a matTooltip="Home" mat-icon-button [routerLink]="['/dashboard']" class="home-icon">
+        <mat-icon>home</mat-icon>
+      </a>
+    <span class="spacer"></span>
+    
+    Welcome Admin!
+</mat-toolbar>
+
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()" class="settings-form">
+
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+  
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="Viewer">Viewer</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="row" formGroupName="address">
+      <mat-form-field appearance="fill">
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state" />
+      </mat-form-field>
+    </div>
+  
+    <div class="row">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  
+  </form>
+  
+
+<h1 class="settings-form">User Access Summary</h1>
+<sub class="sub">Count of users per role</sub>
+
+<div class="settings-form">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [labels]="barChartLabels"
+      [type]="'bar'"
+      [legend]="true"
+      [options]="{ responsive: true, maintainAspectRatio: false }"
+      style="height: 400px; width: 100%;">
+    </canvas>
+  </div>
